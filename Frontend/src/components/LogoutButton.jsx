@@ -1,4 +1,6 @@
 import { Button } from "@/components/ui/button";
+import { logStatusContext } from "../App";
+import { useContext } from "react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -11,9 +13,13 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
-const LogoutButton = ({ onLogout }) => {
+const LogoutButton = () => {
+  const { setIsLoggedIn } = useContext(logStatusContext);
+
+  // Function to log the user out
   const handleLogout = () => {
-    onLogout();
+    localStorage.removeItem("user");
+    setIsLoggedIn(false);
   };
 
   return (

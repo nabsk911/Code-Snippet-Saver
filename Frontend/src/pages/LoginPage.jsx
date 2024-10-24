@@ -34,13 +34,15 @@ const LoginPage = ({ onLogin }) => {
           params: { email, password },
         }
       );
-
+      
       if (response.status === 200) {
         const user = response.data;
-        localStorage.setItem("user", JSON.stringify(user));
+        const loginTimestamp = new Date().getTime();
+        localStorage.setItem("user", JSON.stringify({ ...user, loginTimestamp }));
         onLogin(); // Call the onLogin function passed as prop
         redirect("/home"); // Navigate to home page after successful login
       }
+      
     } catch (error) {
       toast.error(error.response.data);
     }

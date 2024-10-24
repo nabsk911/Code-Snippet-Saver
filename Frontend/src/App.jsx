@@ -16,11 +16,18 @@ export const logStatusContext = createContext();
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("user"));
 
+  // Check if 7 days have passed since login and log out the user
   useEffect(() => {
-    // Apply saved theme from localStorage globally
-    const savedTheme = localStorage.getItem("theme") || "light";
-    document.documentElement.classList.toggle("dark", savedTheme === "dark");
-  }, []);
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      const currentTime = new Date().getTime();
+      const sevenDaysInMs = 7 * 24 * 60 * 60 * 1000;
+
+      if (currentTime - user.loginTimestamp > sevenDaysInMs) {
+        setIsLoggedIn(false);
+      }
+    }
+  }, []); // This will run once when the component is mounted
 
   const handleLogin = () => {
     setIsLoggedIn(true);

@@ -1,10 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { LuUser2 } from "react-icons/lu";
-import { logStatusContext } from "../App";
 import ThemeToggle from "../components/ThemeToggle";
 import { Button } from "@/components/ui/button";
 import CreateModal from "../modals/CreateModal";
+import { logStatusContext } from "../App";
 import LogoutButton from "../components/LogoutButton";
 import SearchSnippets from "../components/SearchSnippets";
 import {
@@ -34,19 +34,12 @@ const HeaderContent = ({ onSearch, onTagFilter, onLanguageFilter }) => {
   const userId = getUserId();
   const [user, setUser] = useState(null);
 
-  // Handler for logout functionality
-  const handleLogout = () => {
-    localStorage.removeItem("user");
-    setIsLoggedIn(false);
-    navigate("/login");
-  };
-
+  // Function to delete the user account
   const handleDeleteUser = async () => {
     try {
       await deleteUserByEmail(user?.email);
       localStorage.removeItem("user");
       setIsLoggedIn(false);
-      navigate("/login");
     } catch (error) {
       console.error("Error deleting user:", error);
     }
@@ -69,7 +62,6 @@ const HeaderContent = ({ onSearch, onTagFilter, onLanguageFilter }) => {
 
   return (
     <div className="fixed top-0 left-0 right-0 z-4 bg-background py-6 px-4 md:px-8 lg:px-16 flex justify-between items-center gap-4 md:gap-12 ">
-      {/* User details and logout button */}
       <Popover>
         <PopoverTrigger>
           <LuUser2 size={30} />
@@ -86,7 +78,7 @@ const HeaderContent = ({ onSearch, onTagFilter, onLanguageFilter }) => {
           <p className="font-bold text-lg">{user?.name}</p>
 
           <ThemeToggle />
-          <LogoutButton onLogout={handleLogout} />
+          <LogoutButton />
 
           {/* Delete Account */}
           <AlertDialog>
