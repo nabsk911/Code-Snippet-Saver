@@ -1,5 +1,5 @@
 import { createCodeSnippet } from "../services/api";
-import CreateUpdateInput from "../ui/CreateUpdateInput";
+import CreateUpdateInput from "../components/ui/CreateUpdateInput";
 import { getUserId } from "../utils/utils";
 import { useContext } from "react";
 import { SnippetDataContext } from "../pages/HomePage";

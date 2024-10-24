@@ -10,7 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { languageIcons, AllLanguages } from "../utils/utils";
+import { languageIcons, AllLanguages } from "../../utils/utils";
 
 const CreateUpdateInput = ({
   onSubmit,

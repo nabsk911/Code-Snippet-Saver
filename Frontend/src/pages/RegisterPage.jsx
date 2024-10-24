@@ -1,4 +1,4 @@
-import AutnInput from "../ui/AuthInput";
+import AutnInput from "../components/ui/AuthInput";
 import { useState } from "react";
 import { validateEmail } from "../utils/utils";
 import axios from "axios";

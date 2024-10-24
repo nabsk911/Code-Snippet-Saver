@@ -4,6 +4,7 @@ import {
   RouterProvider,
   Navigate,
 } from "react-router-dom";
+import { ThemeProvider } from "@/components/theme-provider";
 
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
@@ -50,7 +51,6 @@ const App = () => {
       path: "/home",
       element: isLoggedIn ? (
         <logStatusContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
-          {" "}
           <HomePage />
         </logStatusContext.Provider>
       ) : (
@@ -58,11 +58,12 @@ const App = () => {
       ),
     },
   ]);
+
   return (
-    <>
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <Toaster />
       <RouterProvider router={router} />
-    </>
+    </ThemeProvider>
   );
 };
 
