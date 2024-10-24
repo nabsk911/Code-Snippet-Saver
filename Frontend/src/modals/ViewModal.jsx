@@ -43,26 +43,26 @@ const ViewModal = ({ snippetData, showViewModal, setShowViewModal }) => {
         onClick={handleCloseModals}
       >
         <div
-          className="bg-background border border-border rounded-lg max-h-full p-6 w-full space-y-4 max-w-xl"
+          className="bg-background border border-border rounded-lg max-h-full p-6 w-full space-y-4 max-w-2xl"
           onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the modal content
         >
-          <p className="text-xl md:text-3xl font-bold">{snippetData.title}</p>
+          <p className="text-xl md:text-2xl font-bold">{snippetData.title}</p>
 
           <div className="flex flex-wrap gap-2">
             {snippetData.tags.map((tagObj, index) => (
               <span
                 key={index}
-                className="text-sm md:text-lg px-3 py-1 bg-accent rounded-lg text-foreground"
+                className="text-sm md:text-base px-3 py-1 bg-accent rounded-lg text-foreground"
               >
                 {tagObj.tag}
               </span>
             ))}
           </div>
 
-          <p className="text-base md:text-xl">{snippetData.description}</p>
+          <p className="text-base md:text-lg">{snippetData.description}</p>
 
           <div className="mt-5">
-            <strong className="text-sm md:text-lg">Code:</strong>
+            <strong className="text-sm md:text-base">Code:</strong>
             <div className="mt-2 rounded relative">
               <div className="flex justify-between items-center p-3 z-10 bg-accent text-accent-foreground absolute w-full text rounded-t-lg">
                 <span>{primaryLanguage}</span>

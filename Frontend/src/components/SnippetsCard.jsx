@@ -2,12 +2,7 @@ import React, { useState } from "react";
 import DeleteSnippet from "./DeleteSnippet";
 import ViewModal from "../modals/ViewModal";
 import { languageIcons } from "../utils/utils";
-
-// Utility function to format date
-const formatDate = (dateString) => {
-  const options = { year: "numeric", month: "long", day: "numeric" };
-  return new Date(dateString).toLocaleDateString(undefined, options);
-};
+import { formatDate } from "../utils/utils";
 
 // Tags component for rendering tags
 const Tags = ({ tags }) => (
@@ -34,6 +29,7 @@ const SnippetsCard = ({
   snippetid,
 }) => {
   const [showViewModal, setShowViewModal] = useState(false);
+  console.log(title, createdAt);
 
   return (
     <div
@@ -44,9 +40,7 @@ const SnippetsCard = ({
     >
       <div className="space-y-2 sm:space-y-3">
         {/* Title */}
-        <p className="text-lg sm:text-xl font-bold text-foreground">
-          {title}
-        </p>
+        <p className="text-lg sm:text-xl font-bold text-foreground">{title}</p>
 
         {/* Tags */}
         <Tags tags={tags} />

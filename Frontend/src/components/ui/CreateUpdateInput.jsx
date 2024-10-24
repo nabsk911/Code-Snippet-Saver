@@ -70,7 +70,7 @@ const CreateUpdateInput = ({
       onClick={() => onOpenChange(false)}
     >
       <div
-        className="bg-background border border-border w-full rounded-lg p-6 max-w-xl h-max"
+        className="bg-background border border-border w-full rounded-lg p-6 max-w-2xl h-max"
         onClick={(e) => e.stopPropagation()}
       >
         <form onSubmit={handleSubmit} className="space-y-6">

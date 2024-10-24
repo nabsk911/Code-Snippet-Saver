@@ -36,7 +36,9 @@ const AuthInput = ({
         }}
         onChange={onChange}
       />
-      {errorMessage && <div className="text-destructive-foreground mt-1">{errorMessage}</div>}
+      {errorMessage && (
+        <div className="text-red-500 text-sm mt-1">{errorMessage}</div>
+      )}
 
       {showPasswordToggle && (
         <span
