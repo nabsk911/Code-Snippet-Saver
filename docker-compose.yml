@@ -1,0 +1,44 @@
+services:
+  backend:
+    build:
+      context: ./Backend
+      dockerfile: Dockerfile
+    container_name: spring_backend
+    ports:
+      - "8080:8080" # Expose the backend API
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/code_snippets_db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=123
+    depends_on:
+      - db # Ensure the database starts before the backend
+
+  frontend:
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile
+    container_name: react_frontend
+    ports:
+      - "5173:5173" # Expose the frontend on port 5173
+    environment:
+      - CHOKIDAR_USEPOLLING=true # Enable polling for hot reload in development
+    depends_on:
+      - backend # Ensure the backend starts before the frontend
+    volumes:
+      - ./Frontend:/app # Mount the frontend directory for live reload
+      - /app/node_modules # Prevent overriding node_modules in container
+
+  db:
+    image: postgres:latest
+    container_name: postgres_container
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_DB=code_snippets_db
+    ports:
+      - "5432:5432" # Expose PostgreSQL
+    volumes:
+      - postgres_data:/var/lib/postgresql/data # Persist PostgreSQL data
+
+volumes:
+  postgres_data: # Named volume for PostgreSQL data

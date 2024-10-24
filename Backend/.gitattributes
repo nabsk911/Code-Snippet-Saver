@@ -1,0 +1,6 @@
+* text=auto
+*.java text
+*.xml text
+*.properties text
+*.cmd text
+*.sh text
