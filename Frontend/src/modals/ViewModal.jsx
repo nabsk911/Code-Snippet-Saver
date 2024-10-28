@@ -37,38 +37,39 @@ const ViewModal = ({ snippetData, showViewModal, setShowViewModal }) => {
   return (
     <>
       <div
-        className={`fixed inset-0 flex justify-center items-center bg-black/50 ${
+        className={`fixed inset-0 flex justify-center items-center  bg-black/50 ${
           showViewModal ? "block" : "hidden"
         }`}
         onClick={handleCloseModals}
       >
         <div
-          className="bg-background border border-border rounded-lg max-h-full p-6 w-full space-y-4 max-w-2xl"
-          onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the modal content
+          className="bg-background border border-border rounded-lg  cursor-text max-h-full p-6 w-full space-y-4 max-w-2xl"
+          onClick={(e) => e.stopPropagation()}
         >
-          <p className="text-xl md:text-2xl font-bold">{snippetData.title}</p>
+          <p className="text-xl sm:text-2xl font-semibold">
+            {snippetData.title}
+          </p>
 
           <div className="flex flex-wrap gap-2">
             {snippetData.tags.map((tagObj, index) => (
               <span
                 key={index}
-                className="text-sm md:text-base px-3 py-1 bg-accent rounded-lg text-foreground"
+                className="text-sm sm:text-base px-3 py-1 bg-accent rounded-lg"
               >
                 {tagObj.tag}
               </span>
             ))}
           </div>
 
-          <p className="text-base md:text-lg">{snippetData.description}</p>
+          <p className="text-base sm:text-lg">{snippetData.description}</p>
 
           <div className="mt-5">
-            <strong className="text-sm md:text-base">Code:</strong>
-            <div className="mt-2 rounded relative">
-              <div className="flex justify-between items-center p-3 z-10 bg-accent text-accent-foreground absolute w-full text rounded-t-lg">
+            <div className="mt-2 relative">
+              <div className="flex justify-between items-center p-3 z-10 bg-accent text-accent-foreground absolute w-full rounded-t-lg">
                 <span>{primaryLanguage}</span>
                 <button
                   onClick={handleCopyToClipboard}
-                  className="flex items-center text-sm"
+                  className="flex items-center text-base"
                 >
                   {isCopied ? (
                     <LuClipboardCheck className="w-5 h-5 mr-2" />

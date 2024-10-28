@@ -1,46 +1,49 @@
 import { LuSearch, LuX } from "react-icons/lu";
-
 import { useState, useRef } from "react";
 import FilterModal from "@/modals/FilterModal";
-const SearchBar = ({ onSearch, onTagFilter, onLanguageFilter }) => {
+import { useSnippetFilter } from "./FilterSnippets";
+
+const SearchBar = () => {
   const [query, setQuery] = useState("");
   const [showPopover, setShowPopover] = useState(false);
   const inputRef = useRef(null);
+  const { handleSearch, handleTagFilter, handleLanguageFilter } =
+    useSnippetFilter();
 
+  // Update query and show/hide popover
   const handleInputChange = (e) => {
     const newQuery = e.target.value;
     setQuery(newQuery);
-    onSearch(newQuery);
+    handleSearch(newQuery);
     setShowPopover(inputRef.current === document.activeElement && !newQuery);
   };
 
+  // Clear search and reset popover
   const clearSearch = () => {
     setQuery("");
-    onSearch("");
+    handleSearch("");
     setShowPopover(false);
   };
 
-  const handleInputFocus = () => {
-    setShowPopover(true);
+  // Toggle popover based on focus/blur state
+  const handleFocus = () => setShowPopover(true);
+  const handleBlur = () => {
+    // Delay hiding popover to allow for clicks within it
+    setTimeout(() => {
+      if (!query) setShowPopover(false);
+    }, 100);
   };
 
-  const handleInputBlur = () => {
-    if (!query) {
-      setShowPopover(false);
-    }
-  };
-
-  // Directly filter by tag
+  // Handle filtering by tag or language
   const handleTagClick = (tag) => {
     setQuery(tag);
-    onTagFilter(tag);
+    handleTagFilter(tag);
     setShowPopover(false);
   };
 
-  // Directly filter by language
   const handleLanguageClick = (language) => {
     setQuery(language);
-    onLanguageFilter(language);
+    handleLanguageFilter(language);
     setShowPopover(false);
   };
 
@@ -51,15 +54,15 @@ const SearchBar = ({ onSearch, onTagFilter, onLanguageFilter }) => {
         type="text"
         value={query}
         onChange={handleInputChange}
-        onFocus={handleInputFocus}
-        onBlur={handleInputBlur}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
         placeholder="Search snippets..."
-        className="w-full p-3 pl-10  bg-background text-foreground rounded-lg outline-none focus:outline-ring border border-border"
+        className="w-full p-3 pl-10 bg-background rounded-lg outline-none focus:outline-ring border border-border"
       />
-      <LuSearch className="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-foreground" />
+      <LuSearch className="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2" />
       {query && (
         <LuX
-          className="w-6 h-6 absolute right-3 top-1/2 transform -translate-y-1/2 text-foreground cursor-pointer"
+          className="w-6 h-6 absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
           onClick={clearSearch}
         />
       )}

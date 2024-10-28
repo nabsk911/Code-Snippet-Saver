@@ -40,15 +40,13 @@ const SnippetsCard = ({
     >
       <div className="space-y-2 sm:space-y-3">
         {/* Title */}
-        <p className="text-lg sm:text-xl font-bold text-foreground">{title}</p>
+        <p className="text-lg sm:text-2xl font-semibold ">{title}</p>
 
         {/* Tags */}
         <Tags tags={tags} />
 
         {/* Description */}
-        <p className="text-sm sm:text-base text-foreground line-clamp-2">
-          {description}
-        </p>
+        <p className="text-sm sm:text-lg line-clamp-2">{description}</p>
 
         {/* Language */}
         <p className="text-xs sm:text-sm px-2 sm:px-3 py-1 bg-accent text-accent-foreground rounded-lg w-max flex items-center">
