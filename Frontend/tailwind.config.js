@@ -57,7 +57,7 @@ export default {
       fontFamily: {
         lexend: ["Lexend"],
         josefin: ["Josefin Sans", "sans-serif"],
-        libre: ["Libre Baskerville"],
+        bricolage: ["Bricolage Grotesque"],
       },
     },
   },
