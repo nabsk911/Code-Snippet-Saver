@@ -31,7 +31,7 @@ const DeleteSnippet = ({ snippetId }) => {
       // Update the state to remove the deleted snippet
       setSnippetData(snippetData.filter((snippet) => snippet.id !== snippetId));
 
-      toast("Snippet deleted successfully");
+      toast.info("Snippet deleted successfully");
     } catch (error) {
       console.error("Failed to delete snippet:", error);
     }

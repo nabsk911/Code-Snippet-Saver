@@ -31,7 +31,7 @@ const UpdateModal = ({ open, onOpenChange, initialData }) => {
 
       // Close the modal
       onOpenChange(false);
-      toast.success("Snippet updated successfully");
+      toast.info("Snippet updated successfully");
     } catch (error) {
       console.error("Error updating snippet:", error);
     }
