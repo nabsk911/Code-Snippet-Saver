@@ -51,11 +51,18 @@ const RegisterPage = () => {
       await axios.post("http://localhost:8080/api/user/add", userData);
       toast.success("Registration successful!", {
         description: "Login to continue.",
+        style: {
+          backgroundColor: "#F0FFF4",
+          color: "#166534",
+        },
       });
       navigate("/login");
     } catch (error) {
       toast.error(error.response.data, {
-        description: "Use another Email to create a new account.",
+        style: {
+          backgroundColor: "#FFE5E5",
+          color: "#FF0000",
+        },
       });
     }
   };

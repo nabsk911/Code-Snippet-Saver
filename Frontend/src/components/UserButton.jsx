@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { getUserId } from "@/utils/utils";
 import { getUserById, deleteUserByEmail } from "@/services/api";
+import { toast } from "sonner";
 
 const UserButton = () => {
   const userId = getUserId();
@@ -34,6 +35,12 @@ const UserButton = () => {
       await deleteUserByEmail(user?.email);
       localStorage.removeItem("user");
       setIsLoggedIn(false);
+      toast.info("Account Deleted Successfully!", {
+        style: {
+          backgroundColor: "#EFF6FF",
+          color: "#1E40AF",
+        },
+      });
     } catch (error) {
       console.error("Error deleting user:", error);
     }

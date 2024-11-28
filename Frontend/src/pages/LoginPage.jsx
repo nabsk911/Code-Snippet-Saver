@@ -34,17 +34,24 @@ const LoginPage = ({ onLogin }) => {
           params: { email, password },
         }
       );
-      
+
       if (response.status === 200) {
         const user = response.data;
         const loginTimestamp = new Date().getTime();
-        localStorage.setItem("user", JSON.stringify({ ...user, loginTimestamp }));
+        localStorage.setItem(
+          "user",
+          JSON.stringify({ ...user, loginTimestamp })
+        );
         onLogin(); // Call the onLogin function passed as prop
         redirect("/home"); // Navigate to home page after successful login
       }
-      
     } catch (error) {
-      toast.error(error.response.data);
+      toast.error(error.response.data, {
+        style: {
+          backgroundColor: "#FFE5E5",
+          color: "#FF0000",
+        },
+      });
     }
   };
 

@@ -68,7 +68,7 @@ const App = () => {
 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <Toaster richColors />
+      <Toaster />
       <RouterProvider router={router} />
     </ThemeProvider>
   );

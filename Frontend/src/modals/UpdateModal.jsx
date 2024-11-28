@@ -31,7 +31,12 @@ const UpdateModal = ({ open, onOpenChange, initialData }) => {
 
       // Close the modal
       onOpenChange(false);
-      toast.info("Snippet updated successfully");
+      toast.info("Snippet updated successfully!", {
+        style: {
+          backgroundColor: "#EFF6FF",
+          color: "#1E40AF",
+        },
+      });
     } catch (error) {
       console.error("Error updating snippet:", error);
     }
