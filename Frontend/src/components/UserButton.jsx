@@ -4,6 +4,7 @@ import { logStatusContext } from "../App";
 import LogoutButton from "../components/LogoutButton";
 import ThemeToggle from "../components/ThemeToggle";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 import {
   Popover,
   PopoverContent,
@@ -33,6 +34,7 @@ const UserButton = () => {
     try {
       await deleteUserByEmail(user?.email);
       localStorage.removeItem("user");
+      toast.info("Account deleted successfully");
       setIsLoggedIn(false);
     } catch (error) {
       console.error("Error deleting user:", error);

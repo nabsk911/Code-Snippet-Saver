@@ -12,6 +12,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { toast } from "sonner";
 
 const LogoutButton = () => {
   const { setIsLoggedIn } = useContext(logStatusContext);
@@ -19,6 +20,7 @@ const LogoutButton = () => {
   // Function to log the user out
   const handleLogout = () => {
     localStorage.removeItem("user");
+    toast.info("User Logged out successfully");
     setIsLoggedIn(false);
   };
 
