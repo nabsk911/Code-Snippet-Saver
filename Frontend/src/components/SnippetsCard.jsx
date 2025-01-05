@@ -33,7 +33,7 @@ const SnippetsCard = ({
 
   return (
     <div
-      className="border border-border bg-card rounded-lg p-3 sm:p-4 cursor-pointer h-full hover:shadow-md transition-shadow"
+      className="border-2 border-border bg-card rounded-lg p-3 sm:p-4 cursor-pointer h-full hover:shadow-md transition-shadow"
       onClick={() => {
         setShowViewModal(true);
       }}

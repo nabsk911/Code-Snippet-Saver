@@ -55,9 +55,7 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        lexend: ["Lexend"],
-        josefin: ["Josefin Sans", "sans-serif"],
-        libre: ["Libre Baskerville"],
+        grotesk: ["Space Grotesk", "sans-serif"],
       },
     },
   },
