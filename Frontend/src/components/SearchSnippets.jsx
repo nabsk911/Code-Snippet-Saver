@@ -1,5 +1,5 @@
 import { LuSearch, LuX } from "react-icons/lu";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import FilterModal from "@/modals/FilterModal";
 import { useSnippetFilter } from "./FilterSnippets";
 
@@ -7,28 +7,38 @@ const SearchBar = () => {
   const [query, setQuery] = useState("");
   const [showPopover, setShowPopover] = useState(false);
   const inputRef = useRef(null);
+  const debounceTimer = useRef(null); // Timer reference for debounce
   const { handleSearch, handleTagFilter, handleLanguageFilter } =
     useSnippetFilter();
 
-  // Update query and show/hide popover
+  // Update query and handle debounced search
   const handleInputChange = (e) => {
     const newQuery = e.target.value;
     setQuery(newQuery);
-    handleSearch(newQuery);
+
+    // Clear the previous timer
+    if (debounceTimer.current) {
+      clearTimeout(debounceTimer.current);
+    }
+
+    // Set a new debounce timer
+    debounceTimer.current = setTimeout(() => {
+      handleSearch(newQuery);
+    }, 300);
+
     setShowPopover(inputRef.current === document.activeElement && !newQuery);
   };
 
   // Clear search and reset popover
   const clearSearch = () => {
     setQuery("");
-    handleSearch("");
+    handleSearch(""); // Trigger immediate clear
     setShowPopover(false);
   };
 
   // Toggle popover based on focus/blur state
   const handleFocus = () => setShowPopover(true);
   const handleBlur = () => {
-    // Delay hiding popover to allow for clicks within it
     setTimeout(() => {
       if (!query) setShowPopover(false);
     }, 100);
@@ -46,6 +56,15 @@ const SearchBar = () => {
     handleLanguageFilter(language);
     setShowPopover(false);
   };
+
+  // Cleanup debounce timer on component unmount
+  useEffect(() => {
+    return () => {
+      if (debounceTimer.current) {
+        clearTimeout(debounceTimer.current);
+      }
+    };
+  }, []);
 
   return (
     <div className="relative w-full flex items-center">

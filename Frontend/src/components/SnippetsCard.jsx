@@ -29,7 +29,6 @@ const SnippetsCard = ({
   snippetid,
 }) => {
   const [showViewModal, setShowViewModal] = useState(false);
-  console.log(title, createdAt);
 
   return (
     <div
