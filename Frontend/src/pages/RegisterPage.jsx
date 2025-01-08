@@ -1,10 +1,8 @@
 import AutnInput from "../components/ui/AuthInput";
 import { useState } from "react";
 import { validateEmail } from "../utils/utils";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-
 import { toast } from "sonner";
 
 const validatePassword = (password) => {
@@ -48,13 +46,25 @@ const RegisterPage = () => {
 
     // Try to register the user
     try {
-      await axios.post("http://localhost:8080/api/user/add", userData);
+      const response = await fetch("http://localhost:8080/api/user/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.text();
+        throw new Error(errorData);
+      }
+
       toast.success("Registration successful!", {
         description: "Login to continue.",
       });
       navigate("/login");
     } catch (error) {
-      toast.error(error.response.data, {
+      toast.error(error.message, {
         description: "Use another Email to create a new account.",
       });
     }
@@ -110,7 +120,7 @@ const RegisterPage = () => {
           <Button className="w-full mt-10">Sign Up</Button>
         </form>
 
-        <p className=" text-center mt-10">
+        <p className="text-center mt-10">
           Already have an account?{" "}
           <Link className="cursor-pointer font-bold" to="/login">
             Sign In

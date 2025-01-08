@@ -1,7 +1,6 @@
 import AuthInput from "../components/ui/AuthInput";
 import { useState } from "react";
 import { validateEmail } from "../utils/utils";
-import axios from "axios";
 import { Link, redirect } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
@@ -26,25 +25,29 @@ const LoginPage = ({ onLogin }) => {
     if (!email || !validateEmail(email) || !password) {
       return;
     }
+
     try {
-      const response = await axios.post(
-        "http://localhost:8080/api/user/authenticate",
-        null,
+      const response = await fetch(
+        `http://localhost:8080/api/user/authenticate?email=${encodeURIComponent(
+          email
+        )}&password=${encodeURIComponent(password)}`,
         {
-          params: { email, password },
+          method: "POST",
         }
       );
-      
-      if (response.status === 200) {
-        const user = response.data;
-        const loginTimestamp = new Date().getTime();
-        localStorage.setItem("user", JSON.stringify({ ...user, loginTimestamp }));
-        onLogin(); // Call the onLogin function passed as prop
-        redirect("/home"); // Navigate to home page after successful login
+
+      if (!response.ok) {
+        const errorData = await response.text();
+        throw new Error(errorData);
       }
-      
+
+      const user = await response.json();
+      const loginTimestamp = new Date().getTime();
+      localStorage.setItem("user", JSON.stringify({ ...user, loginTimestamp }));
+      onLogin(); // Call the onLogin function passed as prop
+      redirect("/home"); // Navigate to home page after successful login
     } catch (error) {
-      toast.error(error.response.data);
+      toast.error(error.message);
     }
   };
 
@@ -84,7 +87,7 @@ const LoginPage = ({ onLogin }) => {
           <Button className="w-full mt-10">Sign In</Button>
         </form>
 
-        <p className=" text-center mt-10">
+        <p className="text-center mt-10">
           Don't have an account?{" "}
           <Link className="cursor-pointer font-bold" to="/register">
             Sign Up

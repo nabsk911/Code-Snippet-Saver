@@ -18,7 +18,7 @@ const HomePage = () => {
         setIsLoading(true);
         const response = await getUserCodeSnippets(userId);
         if (response) {
-          setSnippetData(response.data);
+          setSnippetData(response);
         }
       } catch (error) {
         console.error(error);

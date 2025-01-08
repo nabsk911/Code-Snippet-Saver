@@ -45,7 +45,7 @@ const UserButton = () => {
       try {
         const response = await getUserById(userId);
         if (response) {
-          setUser(response.data);
+          setUser(response);
         }
       } catch (error) {
         console.error(error);

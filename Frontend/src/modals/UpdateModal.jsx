@@ -14,26 +14,25 @@ const UpdateModal = ({ open, onOpenChange, initialData }) => {
   const { setSnippetData, snippetData } = useContext(SnippetDataContext);
 
   const handleSubmit = async (updatedSnippetData) => {
-    console.log("Updated snippet data:", updatedSnippetData);
     try {
       const response = await updateCodeSnippet(
         initialData,
         updatedSnippetData,
         userId
       );
-
-      const updatedSnippet = response.data;
+      // Update the snippet data state
       setSnippetData(
         snippetData.map((snippet) =>
-          snippet.id === updatedSnippet.id ? updatedSnippet : snippet
+          snippet.id === response.id ? response : snippet
         )
-      ); // Replace the old snippet with the updated one
+      );
 
-      // Close the modal
+      // Close the modal and show success toast
       onOpenChange(false);
       toast.success("Snippet updated successfully");
     } catch (error) {
       console.error("Error updating snippet:", error);
+      toast.error("Error updating snippet");
     }
   };
 

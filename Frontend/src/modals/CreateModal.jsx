@@ -13,7 +13,7 @@ const CreateModal = ({ open, onOpenChange }) => {
       const response = await createCodeSnippet(snippetDataInput, userId);
 
       // Update the snippetData state with the new snippet
-      setSnippetData([response.data, ...snippetData]);
+      setSnippetData([response, ...snippetData]);
 
       // Close the modal
       onOpenChange(false);
