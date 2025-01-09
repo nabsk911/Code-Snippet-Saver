@@ -81,7 +81,7 @@ const ViewModal = ({ snippetData, showViewModal, setShowViewModal }) => {
               </div>
               <CodeHighlighter
                 code={snippetData.code}
-                language={primaryLanguage}
+                language={primaryLanguage === "c#" ? "csharp" : primaryLanguage}
               />
             </div>
           </div>

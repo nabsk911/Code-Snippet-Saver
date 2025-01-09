@@ -28,8 +28,6 @@ const GeminiCreate = () => {
 
   const handleSelectChange = (selectedLang) => {
     setSelectedLanguage(selectedLang);
-
-    setInputValue(`${inputValue} in ${selectedLang}`);
   };
 
   const handleSubmit = async (e) => {
@@ -51,7 +49,7 @@ const GeminiCreate = () => {
       const requestBody = {
         contents: [
           {
-            parts: [{ text: inputValue.trim() }],
+            parts: [{ text: `${inputValue} in ${selectedLanguage}` }],
           },
         ],
         generationConfig: {
@@ -104,7 +102,6 @@ const GeminiCreate = () => {
       const data = await response.json();
       const generatedSnippet = data.candidates[0].content.parts[0].text;
       const snippetDataInput = JSON.parse(generatedSnippet);
-      console.log("Snippet Data Input:", snippetDataInput);
 
       // Convert language to lowercase before sending to server
       snippetDataInput.language = snippetDataInput.language.toLowerCase();
@@ -121,7 +118,6 @@ const GeminiCreate = () => {
       setSelectedLanguage("");
     } catch (error) {
       console.error("Error:", error);
-      setError(error.message);
       toast.error(error); // Set error state in case of an issue
     } finally {
       setLoading(false); // Stop loading after the request completes

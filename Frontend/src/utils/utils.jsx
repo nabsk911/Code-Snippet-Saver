@@ -54,7 +54,6 @@ import {
   SiScala,
   SiHtml5,
   SiCss3,
-  SiReact,
 } from "react-icons/si";
 import { FaJava } from "react-icons/fa";
 
@@ -63,7 +62,8 @@ export const languageIcons = {
   javascript: <SiJavascript />,
   python: <SiPython />,
   java: <FaJava />,
-  csharp: <SiCsharp />,
+  "c#": <SiCsharp />,
+
   cpp: <SiCplusplus />,
   ruby: <SiRuby />,
   php: <SiPhp />,
@@ -75,15 +75,13 @@ export const languageIcons = {
   scala: <SiScala />,
   html: <SiHtml5 />,
   css: <SiCss3 />,
-  react: <SiReact />,
 };
 
 export const AllLanguages = [
   "javascript",
   "python",
-  "react",
   "java",
-  "csharp",
+  "c#",
   "cpp",
   "ruby",
   "php",
