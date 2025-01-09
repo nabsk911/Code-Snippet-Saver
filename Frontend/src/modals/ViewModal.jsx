@@ -37,7 +37,7 @@ const ViewModal = ({ snippetData, showViewModal, setShowViewModal }) => {
   return (
     <>
       <div
-        className={`fixed inset-0 flex justify-center items-center  bg-black/50 ${
+        className={`fixed inset-0 flex justify-center items-center z-50  bg-black/50 ${
           showViewModal ? "block" : "hidden"
         }`}
         onClick={handleCloseModals}

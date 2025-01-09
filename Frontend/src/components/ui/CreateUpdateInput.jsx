@@ -21,7 +21,6 @@ const CreateUpdateInput = ({
   submitButtonText,
 }) => {
   const [formData, setFormData] = useState({
-    id: "",
     title: "",
     description: "",
     tags: "",
@@ -33,7 +32,6 @@ const CreateUpdateInput = ({
   useEffect(() => {
     if (open) {
       setFormData({
-        id: initialData.id || "",
         title: initialData.title || "",
         description: initialData.description || "",
         tags: initialData.tags

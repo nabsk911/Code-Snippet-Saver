@@ -3,6 +3,7 @@ import { useState, useEffect, createContext } from "react";
 import { getUserId } from "../utils/utils";
 import { getUserCodeSnippets } from "../services/api";
 import { LuLoader2 } from "react-icons/lu";
+import GeminiCreate from "@/components/GeminiCreate";
 
 export const SnippetDataContext = createContext();
 
@@ -41,6 +42,7 @@ const HomePage = () => {
         ) : (
           <FilterSnippets snippet={snippetData} />
         )}
+        {isLoading ? "" : <GeminiCreate />}
       </SnippetDataContext.Provider>
     </div>
   );

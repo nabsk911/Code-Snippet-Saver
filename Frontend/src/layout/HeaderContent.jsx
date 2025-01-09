@@ -11,7 +11,7 @@ const HeaderContent = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-4 bg-background py-6 px-4 md:px-8 lg:px-16 flex justify-between items-center gap-4 md:gap-12 ">
+    <div className="fixed top-0 left-0 right-0 z-50 bg-background py-6 px-4 md:px-8 lg:px-16 flex justify-between items-center gap-4 md:gap-12 ">
       <UserButton />
 
       {/* Search component */}

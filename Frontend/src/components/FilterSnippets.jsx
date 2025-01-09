@@ -62,7 +62,7 @@ const FilterSnippets = ({ snippet }) => {
   const renderContent = () => {
     if (filteredSnippets.length === 0 && searchQuery) {
       return (
-        <div className="col-span-full flex items-center justify-center h-[70vh]">
+        <div className="col-span-full flex items-center justify-center h-[55vh]">
           <p className="text-3xl">Snippet not found!</p>
         </div>
       );
@@ -70,7 +70,7 @@ const FilterSnippets = ({ snippet }) => {
 
     if (snippet.length === 0) {
       return (
-        <div className="col-span-full flex items-center justify-center h-[70vh]">
+        <div className="col-span-full flex items-center justify-center h-[60vh]">
           <p className="text-3xl">Create a snippet.</p>
         </div>
       );
@@ -102,7 +102,7 @@ const FilterSnippets = ({ snippet }) => {
         <HeaderContent />
       </SnippetFilterContext.Provider>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-28 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-28 mb-40 sm:mb-36">
         {renderContent()}
       </div>
     </div>
