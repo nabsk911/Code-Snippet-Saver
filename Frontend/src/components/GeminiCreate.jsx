@@ -29,7 +29,6 @@ const GeminiCreate = () => {
   const handleSelectChange = (selectedLang) => {
     setSelectedLanguage(selectedLang);
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -57,30 +56,20 @@ const GeminiCreate = () => {
           response_schema: {
             type: "object",
             properties: {
-              code: {
-                type: "string",
-              },
-              description: {
-                type: "string",
-              },
-              language: {
-                type: "string",
-              },
+              code: { type: "string" },
+              description: { type: "string" },
+              language: { type: "string" },
               tags: {
                 type: "array",
                 items: {
                   type: "object",
                   properties: {
-                    tag: {
-                      type: "string",
-                    },
+                    tag: { type: "string" },
                   },
                   required: ["tag"],
                 },
               },
-              title: {
-                type: "string",
-              },
+              title: { type: "string" },
             },
             required: ["code", "description", "language", "tags", "title"],
           },
@@ -96,31 +85,33 @@ const GeminiCreate = () => {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to fetch data from API");
+        throw new Error(
+          `Failed to fetch data from API. Status: ${response.status}`
+        );
       }
 
       const data = await response.json();
       const generatedSnippet = data.candidates[0].content.parts[0].text;
       const snippetDataInput = JSON.parse(generatedSnippet);
 
-      // Convert language to lowercase before sending to server
-      snippetDataInput.language = snippetDataInput.language.toLowerCase();
+      snippetDataInput.language = snippetDataInput.language
+        .split(",")[0]
+        .trim()
+        .toLowerCase();
 
       const responseServer = await createCodeSnippet(snippetDataInput, userId);
 
-      //Toast
       toast.success("Snippet created successfully!");
-      // console.log("Response from server:", responseServer);
-      // Update the snippetData state with the new snippet
       setSnippetData([responseServer, ...snippetData]);
-      // Optionally, clear the input after successful submission
       setInputValue("");
       setSelectedLanguage("");
     } catch (error) {
-      console.error("Error:", error);
-      toast.error(error); // Set error state in case of an issue
+      console.error("Error in handleSubmit:", error);
+      toast.error(
+        "An error occurred while creating the snippet. Please try again."
+      );
     } finally {
-      setLoading(false); // Stop loading after the request completes
+      setLoading(false);
     }
   };
 
