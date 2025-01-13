@@ -43,7 +43,7 @@ const ViewModal = ({ snippetData, showViewModal, setShowViewModal }) => {
         onClick={handleCloseModals}
       >
         <div
-          className="bg-background border border-border rounded-lg  cursor-text max-h-full p-6 w-full space-y-4 max-w-2xl"
+          className="bg-background border border-border rounded-lg  cursor-text max-h-screen p-6 w-full space-y-4 max-w-3xl"
           onClick={(e) => e.stopPropagation()}
         >
           <p className="text-xl sm:text-2xl font-semibold">
@@ -61,7 +61,9 @@ const ViewModal = ({ snippetData, showViewModal, setShowViewModal }) => {
             ))}
           </div>
 
-          <p className="text-base sm:text-lg">{snippetData.description}</p>
+          <p className="text-sm xs:text-base sm:text-lg">
+            {snippetData.description}
+          </p>
 
           <div className="mt-5">
             <div className="mt-2 relative">
@@ -86,7 +88,7 @@ const ViewModal = ({ snippetData, showViewModal, setShowViewModal }) => {
             </div>
           </div>
 
-          <div className="mt-4 flex gap-4 justify-end">
+          <div className="mt-4 mb-3 flex gap-4 justify-end">
             <Button onClick={handleShowUpdate}>Edit</Button>
             <Button onClick={handleCloseModals} variant="outline">
               Close

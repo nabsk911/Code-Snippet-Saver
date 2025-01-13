@@ -68,10 +68,10 @@ const CreateUpdateInput = ({
       onClick={() => onOpenChange(false)}
     >
       <div
-        className="bg-background border border-border w-full rounded-lg p-6 max-w-2xl h-max"
+        className="bg-background border border-border rounded-lg max-h-screen p-6 w-full  max-w-3xl"
         onClick={(e) => e.stopPropagation()}
       >
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <h2 className="text-2xl font-bold">{modalTitle}</h2>
           {/* Title Input */}
           <div className="flex gap-3 items-center">
@@ -95,6 +95,7 @@ const CreateUpdateInput = ({
               placeholder="Description"
               required
               className="resize-none"
+              maxLength={350}
               rows={3}
             />
           </div>

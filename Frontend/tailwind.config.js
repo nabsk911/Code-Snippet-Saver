@@ -4,6 +4,9 @@ export default {
   content: ["./src/**/*.{js,jsx}"],
   theme: {
     extend: {
+      screens: {
+        xs: "415px", // Custom xs breakpoint
+      },
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",

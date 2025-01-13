@@ -48,7 +48,11 @@ const GeminiCreate = () => {
       const requestBody = {
         contents: [
           {
-            parts: [{ text: `${inputValue} in ${selectedLanguage}` }],
+            parts: [
+              {
+                text: `${inputValue} in ${selectedLanguage}`,
+              },
+            ],
           },
         ],
         generationConfig: {
