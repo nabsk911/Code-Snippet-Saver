@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { LuClipboard, LuClipboardCheck } from "react-icons/lu";
+import { LuClipboard, LuClipboardCheck, LuPencilLine } from "react-icons/lu";
 import CodeHighlighter from "../components/CodeHighlighter";
 import UpdateModal from "../modals/UpdateModal";
 import { Button } from "@/components/ui/button";
@@ -89,7 +89,11 @@ const ViewModal = ({ snippetData, showViewModal, setShowViewModal }) => {
           </div>
 
           <div className="mt-4 mb-3 flex gap-4 justify-end">
-            <Button onClick={handleShowUpdate}>Edit</Button>
+            <Button onClick={handleShowUpdate}>
+              {" "}
+              <LuPencilLine />
+              Edit
+            </Button>
             <Button onClick={handleCloseModals} variant="outline">
               Close
             </Button>

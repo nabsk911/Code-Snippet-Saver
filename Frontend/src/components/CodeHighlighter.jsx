@@ -19,7 +19,7 @@ const CodeHighlighter = ({ code, language }) => {
         borderRadius: "1rem",
         paddingTop: "4rem",
       }}
-      className="overflow-auto relative w-full max-h-[40vh] xs:max-h-[55vh] "
+      className="overflow-auto relative w-full max-h-[40vh] xs:max-h-[53vh] "
     >
       {code}
     </SyntaxHighlighter>
