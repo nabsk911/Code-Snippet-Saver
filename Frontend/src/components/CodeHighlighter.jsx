@@ -1,6 +1,8 @@
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { oneDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
-import { oneLight } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import {
+  oneLight,
+  oneDark,
+} from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { useTheme } from "@/components/theme-provider";
 
 const CodeHighlighter = ({ code, language }) => {
@@ -10,11 +12,17 @@ const CodeHighlighter = ({ code, language }) => {
   const syntaxTheme = theme === "dark" ? oneDark : oneLight;
 
   return (
-    <div className="relative w-full max-h-[40vh] xs:max-h-[55vh] overflow-auto">
-      <SyntaxHighlighter language={language} style={syntaxTheme}>
-        {code}
-      </SyntaxHighlighter>
-    </div>
+    <SyntaxHighlighter
+      language={language}
+      style={syntaxTheme}
+      customStyle={{
+        borderRadius: "1rem",
+        paddingTop: "4rem",
+      }}
+      className="overflow-auto relative w-full max-h-[40vh] xs:max-h-[55vh] "
+    >
+      {code}
+    </SyntaxHighlighter>
   );
 };
 

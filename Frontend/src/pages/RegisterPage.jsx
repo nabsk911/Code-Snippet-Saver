@@ -4,6 +4,7 @@ import { validateEmail } from "../utils/utils";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import MainImage from "../assets/MainImage.png";
 
 const validatePassword = (password) => {
   return password.length >= 6;
@@ -71,61 +72,80 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="h-screen flex justify-center items-center">
-      <div className="border border-border rounded-lg p-10">
-        <p className="text-3xl font-bold text-center mb-1">Create account</p>
-        <p className="text-base text-center">Let's get started.</p>
-        <form onSubmit={handleSubmit} noValidate>
-          <AutnInput
-            id="name"
-            label="Name"
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            errorMessage={
-              formSubmitted && !name ? "Please enter your name" : ""
-            }
-          />
+    <div className="min-h-screen flex box-border justify-center items-center">
+      {/* Container for the form and the image */}
+      <div className="rounded-2xl flex max-w-3xl p-5  border-2 border-border">
+        {/* Form Section */}
+        <div className="md:w-1/2 px-8">
+          <p className="text-3xl  font-bold  mb-1">Welcome Back!</p>
+          <p className="text-base  mt-4">Please enter your details.</p>
 
-          <AutnInput
-            id="email"
-            label="Email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            errorMessage={
-              formSubmitted && !email
-                ? "Please enter your email"
-                : formSubmitted && !validateEmail(email)
-                ? "Invalid email format"
-                : ""
-            }
-          />
-          <AutnInput
-            id="password"
-            label="Password"
-            type={!showPassword ? "password" : "text"}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            showPasswordToggle={handleShowPassword}
-            errorMessage={
-              formSubmitted && !password
-                ? "Please enter your password"
-                : formSubmitted && !validatePassword(password)
-                ? "Use 6 characters or more for your password"
-                : ""
-            }
-          />
+          <form
+            onSubmit={handleSubmit}
+            noValidate
+            className="flex flex-col gap-4"
+          >
+            <AutnInput
+              id="name"
+              label="Name"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              errorMessage={
+                formSubmitted && !name ? "Please enter your name" : ""
+              }
+            />
 
-          <Button className="w-full mt-10">Sign Up</Button>
-        </form>
+            <AutnInput
+              id="email"
+              label="Email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              errorMessage={
+                formSubmitted && !email
+                  ? "Please enter your email"
+                  : formSubmitted && !validateEmail(email)
+                  ? "Invalid email format"
+                  : ""
+              }
+            />
+            <AutnInput
+              id="password"
+              label="Password"
+              type={!showPassword ? "password" : "text"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              showPasswordToggle={handleShowPassword}
+              errorMessage={
+                formSubmitted && !password
+                  ? "Please enter your password"
+                  : formSubmitted && !validatePassword(password)
+                  ? "Use 6 characters or more for your password"
+                  : ""
+              }
+            />
 
-        <p className="text-center mt-10">
-          Already have an account?{" "}
-          <Link className="cursor-pointer font-bold" to="/login">
-            Sign In
-          </Link>
-        </p>
+            <Button className="w-full mt-10">Sign Up</Button>
+          </form>
+
+          <p className="text-center mt-10">
+            Already have an account?{" "}
+            <Link className="cursor-pointer font-bold" to="/login">
+              Sign In
+            </Link>
+          </p>
+        </div>
+        {/* Image Section */}
+        <div className="w-1/2  md:flex hidden bg-secondary rounded-lg">
+          <img
+            src={MainImage}
+            height={800}
+            width={800}
+            alt="Main"
+            className="object-cover"
+          />
+        </div>
       </div>
     </div>
   );
