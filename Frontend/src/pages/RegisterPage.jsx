@@ -77,8 +77,8 @@ const RegisterPage = () => {
       <div className="rounded-2xl flex max-w-3xl p-5  border-2 border-border">
         {/* Form Section */}
         <div className="md:w-1/2 px-8">
-          <p className="text-3xl  font-bold  mb-1">Welcome Back!</p>
-          <p className="text-base  mt-4">Please enter your details.</p>
+          <p className="text-3xl  font-bold  mb-1">Create account</p>
+          <p className="text-base  mt-4">Let's get started.</p>
 
           <form
             onSubmit={handleSubmit}
