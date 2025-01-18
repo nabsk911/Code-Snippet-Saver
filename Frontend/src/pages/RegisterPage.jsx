@@ -6,9 +6,14 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import MainImage from "../assets/MainImage.png";
 
-const validatePassword = (password) => {
+function validatePassword(password) {
   return password.length >= 6;
-};
+}
+
+function validateName(name) {
+  const regex = /^[A-Za-z\s'-]+$/;
+  return regex.test(name);
+}
 
 const RegisterPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -92,7 +97,11 @@ const RegisterPage = () => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               errorMessage={
-                formSubmitted && !name ? "Please enter your name" : ""
+                formSubmitted && !name
+                  ? "Please enter your name"
+                  : formSubmitted && !validateName(name)
+                  ? "Invalid name format"
+                  : ""
               }
             />
 

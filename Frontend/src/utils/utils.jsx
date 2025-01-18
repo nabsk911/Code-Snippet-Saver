@@ -28,8 +28,8 @@ export const formatDate = (dateString) => {
 
 // Email Validation util
 export const validateEmail = (email) => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
+  const emailRegex = /^[a-zA-Z]{3}[a-zA-Z0-9._%+-]*@[a-zA-Z.-]+\.[a-zA-Z]{2,}$/;
+  return emailRegex.test(email.trim());
 };
 
 // User Id Util
